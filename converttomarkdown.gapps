@@ -1,14 +1,29 @@
 /*
 Usage:
   Adding this script to your doc:
-    - Tools > Script Manager > New
-    - Select "Blank Project", then paste this code in and save.
+    - Tools > Script editor, to open a new Google Apps Script project
+    - Paste this code in and save, calling the project "ConvertToMarkdown"
+    - Publish > Test as add-on...
+    - Select version: Test with latest code
+    - Installation config: Installed for current user
+    - Click Select Doc
+    - From the new window, click the document you want > Select
+    # - Publish > Deploy as Docs web add-on...
   Running the script:
     - Tools > Script Manager
     - Select "ConvertToMarkdown" function.
     - Click Run button.
     - Converted doc will be mailed to you. Subject will be "[MARKDOWN_MAKER]...".
+
+
 */
+
+function onOpen() {
+  // Add a menu with some items, some separators, and a sub-menu.
+  DocumentApp.getUi().createMenu('Convert')
+      .addItem('Convert to Markdown and Email the Result', 'ConvertToMarkdown')
+      .addToUi();
+}
 
 function ConvertToMarkdown() {
   var numChildren = DocumentApp.getActiveDocument().getActiveSection().getNumChildren();
